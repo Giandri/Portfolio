@@ -13,4 +13,27 @@ document.addEventListener("DOMContentLoaded", function () {
     experienceSection.style.display = "none";
     projectSection.style.display = "block";
   });
+
+  const overlay = document.querySelector(".overlay");
+  const counter = document.querySelector(".counter");
+  const bars = document.querySelectorAll(".bar");
+  let count = 0;
+
+  bars.forEach((bar, index) => {
+    bar.style.animationDelay = index * 200 + "ms";
+  });
+
+  const interval = setInterval(function () {
+    if (count < 100) {
+      count++;
+      counter.textContent = count;
+    } else {
+      clearInterval(interval);
+      overlay.classList.add("fade-out");
+      setTimeout(() => {
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
+      }, 1000);
+    }
+  }, 30);
 });

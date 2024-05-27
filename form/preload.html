@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 class="counter">0</h1>
+
+  <div class="overlay">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+  <script>
+    function startLoader() {
+      let counterElement = document.querySelector(".counter");
+      let counter = 0;
+
+      function updateCounter() {
+        if(currentValue === 100){
+          return;
+        }
+        currentValue += Math.floor(Math.random() * 10) + 1;
+
+        if (currentValue > 100) {
+          currentValue = 100;
+      }
+      counterElement.textContent = currentValue;
+
+      let delay = Math.floor(Math.random() * 200) * 50;
+      setTimeout(updateCounter, delay);
+
+    }
+
+    updateCounter();
+
+  }
+    startLoader();
+    gsap.to(".counter" , 0.25, {
+      delay: 3.5,
+      opaCity: 0,
+    });
+
+    gsap.to(".bar" , 1.5, {
+      delay: 3.5,
+      height: 0,
+      stagger:{
+        amount: 0.5
+      },
+      ease: "power4.inOut",
+    });
+    gsap.from(".h1", 1.5, {
+      delay: 4,
+      y: 700,
+      stagger: {
+        amount: 0.5
+      },
+      ease: "power4.inOut",
+    });
+  </script>
+</body>
+</html>
